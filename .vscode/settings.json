@@ -1,9 +1,10 @@
 {
   "files.exclude": {
-    "node_modules": true,
-    "coverage": true,
-    "**/*config.js": true,
-    ".*": true
+    "node_modules": false,
+    "allure-results": true,
+    "coverage": false,
+    "**/*config.js": false,
+    ".gitignore": true
   },
   "editor.renderWhitespace": "boundary",
   "editor.tabSize": 2,
