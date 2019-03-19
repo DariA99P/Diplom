@@ -1,0 +1,18 @@
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--white, #FFF);
+  height: 56px;
+  width: 100%;
+  padding: 0px 16px;
+}
+
+.action-bar>div {
+  display: flex;
+  align-items: center;
+}
+
+.action-bar>div button {
+  border-radius: 4px;
+  margin-top: 4px;
+}

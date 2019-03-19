@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Tag /> On rendering When appliction environment is defferent from PROD should renders a tag informing the environment 1`] = `
+<Tag
+  closable={false}
+  color="blue"
+  prefixCls="ant-tag"
+  style={
+    Object {
+      "cursor": "context-menu",
+      "marginLeft": "16px",
+    }
+  }
+>
+  Dev Environment
+</Tag>
+`;

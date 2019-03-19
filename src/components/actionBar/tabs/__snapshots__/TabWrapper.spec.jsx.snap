@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TabWrapper /> On rendering should render properly 1`] = `
+<div
+  className="tabWrapper"
+>
+  <Menu
+    className="tabWrapperMenu"
+    focusable={false}
+    mode="horizontal"
+    onClick={[Function]}
+    prefixCls="ant-menu"
+    theme="light"
+  >
+    <MenuItem>
+      Index
+    </MenuItem>
+    <MenuItem>
+      Tab 1
+    </MenuItem>
+    <MenuItem>
+      Tab 2
+    </MenuItem>
+    <MenuItem>
+      Tab 3
+    </MenuItem>
+  </Menu>
+</div>
+`;

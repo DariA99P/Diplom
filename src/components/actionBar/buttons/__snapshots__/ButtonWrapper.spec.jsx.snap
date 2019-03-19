@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ButtonWrapper /> On rendering should render properly 1`] = `
+<div>
+  <Button
+    block={false}
+    ghost={false}
+    loading={false}
+    prefixCls="ant-btn"
+    type="primary"
+  >
+    <Icon
+      type="book"
+    />
+    Save
+  </Button>
+</div>
+`;

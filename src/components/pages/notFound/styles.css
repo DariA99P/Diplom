@@ -1,0 +1,18 @@
+.img {
+  margin-right: 1rem;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+.title {
+  font-size: 4.5rem;
+  margin: 0 0 1rem 0;
+  font-weight: 200;
+  color: #646464;
+}
+
+.text {
+  font-size: 1.25rem;
+  text-align: justify;
+}

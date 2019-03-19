@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NotFound /> When back button is clicked should redirects to back page 1`] = `[Function]`;
+
+exports[`<NotFound /> When rendering should renders properly 1`] = `
+<Row
+  align="middle"
+  gutter={76}
+  justify="center"
+  type="flex"
+>
+  <Col
+    lg={8}
+    md={24}
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <img
+      alt="Not Found"
+      className="img"
+      src="not_found.png"
+    />
+  </Col>
+  <Col
+    lg={8}
+    md={24}
+  >
+    <h1
+      className="title"
+    >
+      Error
+    </h1>
+    <p
+      className="text"
+    >
+      Sorry, the page you visited does not exist or is not available. Contact your administrator if you are having problems.
+    </p>
+    <Button
+      block={false}
+      ghost={false}
+      loading={false}
+      onClick={[Function]}
+      prefixCls="ant-btn"
+      type="primary"
+    >
+      Back
+    </Button>
+  </Col>
+</Row>
+`;

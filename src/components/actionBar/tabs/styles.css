@@ -1,0 +1,15 @@
+.tab-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.tab-wrapper-menu {
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  border-bottom: none;
+}

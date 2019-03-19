@@ -1,0 +1,13 @@
+{
+  "files.exclude": {
+    "node_modules": true,
+    "coverage": true,
+    "**/*config.js": true,
+    ".*": true
+  },
+  "editor.renderWhitespace": "boundary",
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "editor.formatOnSave": false,
+  "editor.rulers": [80]
+}

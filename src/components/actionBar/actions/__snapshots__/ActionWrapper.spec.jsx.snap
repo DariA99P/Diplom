@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ActionWrapper /> On rendering should render properly 1`] = `
+<div>
+  <Input
+    disabled={false}
+    prefixCls="ant-input"
+    type="text"
+  />
+</div>
+`;
