@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { Antd } from '@vj/vjcomponentslibrary';
 
-import breadcrumbNameMap from 'constants/breadcrumbNameMap';
+import breadcrumbNameMap from '../../../constants/breadcrumbNameMap';
 
 export function Breadcrumb({ location, ...others }) {
   const { Breadcrumb: AntBreadcrumb } = Antd;

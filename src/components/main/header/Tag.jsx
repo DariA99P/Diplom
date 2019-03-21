@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Antd } from '@vj/vjcomponentslibrary';
 
-import defineEnvironment from 'utils/environmentDefinition';
+import defineEnvironment from '../../../utils/environmentDefinition';
 
 
 function Tag() {

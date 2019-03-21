@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Antd } from '@vj/vjcomponentslibrary';
-import Clock from 'components/shared/clock';
-import Breadcrumb from 'components/main/breadcrumb';
+import Clock from '../../shared/clock';
+import Breadcrumb from '../breadcrumb';
 import Tag from './Tag';
 
 

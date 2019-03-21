@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import { Antd } from '@vj/vjcomponentslibrary';
 
-import nook from 'utils/nook';
+import nook from '../../../utils/nook';
 
-import notFoundImg from 'assets/images/not_found.png';
+import notFoundImg from '../../../assets/images/not_found.png';
 
 import styles from './styles.css';
 

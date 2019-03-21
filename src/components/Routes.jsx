@@ -2,15 +2,15 @@ import React from 'react';
 
 import Loadable from 'react-loadable';
 import { Switch, Route } from 'react-router-dom';
-import Loader from 'components/shared/loader';
+import Loader from './shared/loader';
 
 const Welcome = Loadable({
-  loader: () => import('components/pages/welcome'),
+  loader: () => import('./pages/welcome'),
   loading: Loader,
 });
 
 const NotFound = Loadable({
-  loader: () => import('components/pages/notFound'),
+  loader: () => import('./pages/notFound'),
   loading: Loader,
 });
 

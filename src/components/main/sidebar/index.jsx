@@ -16,7 +16,7 @@ import {
 } from '@vj/vjcomponentslibrary';
 import { Link } from 'react-router-dom';
 
-import Logo from 'assets/images/vj_logo.png';
+import Logo from '../../../assets/images/vj_logo.png';
 
 import styles from './styles.css';
 

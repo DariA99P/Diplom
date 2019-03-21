@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Antd } from '@vj/vjcomponentslibrary';
-import Routes from 'components/Routes';
+import Routes from '../Routes';
 import Header from './header';
 import Content from './content';
 import Wrapper from './wrapper';
