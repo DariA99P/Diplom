@@ -3,7 +3,6 @@
 exports[`<ButtonWrapper /> On rendering should render properly 1`] = `
 <div>
   <Button
-    block={false}
     ghost={false}
     loading={false}
     prefixCls="ant-btn"

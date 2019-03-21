@@ -1,26 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import ReactMarkdown from 'react-markdown';
-
-import readme from '../../../../README.md';
-import styles from './styles.css';
-
-class Welcome extends Component {
-  state = { text: null };
-
-  componentWillMount() {
-    fetch(readme).then(res => res.text()).then((text) => {
-      this.setState({ text });
-    });
-  }
-
-  render() {
-    const { text } = this.state;
-
-    return (
-      <ReactMarkdown className={styles.wrapper} source={text} />
-    );
-  }
-}
+const Welcome = () => (
+  <div>
+    <h1>Welcome to UI Boilerplate 2</h1>
+    <p>Please read the README.MD in the folder directory for more details.</p>
+  </div>
+);
 
 export default Welcome;

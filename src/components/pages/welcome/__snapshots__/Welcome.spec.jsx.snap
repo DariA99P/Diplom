@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Welcome /> should renders properly 1`] = `
-<div
-  className="wrapper"
-/>
+<div>
+  <h1>
+    Welcome to UI Boilerplate 2
+  </h1>
+  <p>
+    Please read the README.MD in the folder directory for more details.
+  </p>
+</div>
 `;

@@ -10,7 +10,6 @@ exports[`<Sidebar /> When rendering should renders properly 1`] = `
   prefixCls="ant-layout-sider"
   reverseArrow={false}
   style={Object {}}
-  theme="dark"
   trigger={null}
   width={255}
 >
