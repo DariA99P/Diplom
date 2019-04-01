@@ -4,41 +4,56 @@ A plain Webpack 4 ready-to-go configuration to start and develop a complete reac
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+To get started just clone the project to your working folder and follow this README instructions. If you need to migrate from a boilerplate old version, please follow this instructions: [Migration Guide](http://confluence.vistajet.local/display/APCENTRE/How+to+migrate+to+boilerplate-2.X)
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+* Node.js v8 or above
 
-```
-Give examples
+You can check your node version using the command:
+
+```CLI
+node --version
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+Install dependencies and start using [yarn](https://yarnpkg.com):
 
-Say what the step will be
-
+```CLI
+yarn install
+yarn start
 ```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+To run **unit tests** run the command:
 
-## Deployment
+```CLI
+yarn test
+```
 
-Add additional notes about how to deploy this on a live system
+To run **automation tests** run the command:
+
+```CLI
+yarn automation
+```
+
+## Generating production build
+
+You can generate an optimized distribution bundle. To do this run the command:
+
+```CLI
+yarn build
+```
+
+this will generate the build directory where a optimized bundled version of the application will be placed.
+
+This bundled app is similar to the backend artifact and must be used in production.
+
+Knowing that this bundled app is only HTML, CSS and Javascript files, it can be served from any static file server.
+
+A node server is not necessary to run this app.
 
 ## Built With
 
@@ -48,6 +63,12 @@ Add additional notes about how to deploy this on a live system
 * [Yarn](https://yarnpkg.com) - Dependency Management
 * [Jest](https://jestjs.io/) - JavaScript Testing
 * [Enzyme](https://airbnb.io/enzyme/docs/api/) - Component tests for React
+
+## Contributing
+
+If you have any suggestion or doubt, please take a look in the confluence first and if necessary ask in the [boilerplate chat channel](https://chat.vistajet.com/channel/boilerplate).
+
+For major changes, please open an Jira before discussing what you would like to change. The project is [UI BOILER](http://jira/projects/UIBOILER/summary).
 
 ## Versioning
 
