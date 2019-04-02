@@ -9,6 +9,7 @@ const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const enableBundleAnalyzer = process.env.ENABLE_ANALYZER === 'true';
+const postcss = process.env.POST_CSS === 'true';
 
 module.exports = merge(common, {
     mode: 'production',
@@ -17,7 +18,7 @@ module.exports = merge(common, {
         rules: [
             {
                 test: /\.css$/,
-                use: [
+                use: postcss ? [
                     { loader: "style-loader" },
                     {
                         loader: "css-loader",
@@ -33,6 +34,9 @@ module.exports = merge(common, {
                             ident: 'postcss',
                         },
                     },
+                ] : [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" }
                 ]
             },
             {

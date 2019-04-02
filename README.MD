@@ -55,6 +55,22 @@ Knowing that this bundled app is only HTML, CSS and Javascript files, it can be 
 
 A node server is not necessary to run this app.
 
+## Additional options
+
+### Style options
+This project is configured to use simple CSS.
+
+It's possible to enable POST CSS + CSS modules configuration.
+To do this add following comand to start and builds scripts:
+
+```CLI
+POST_CSS=true
+```
+
+The default option is simple CSS. Although when starting a project the POST_CSS configuration will be setted as true. Having this configuration setted as true will avoid problems when migrating from old version.
+
+**ATTENTION**: If you are starting a new project, the use of simple CSS is recommended.
+
 ## Built With
 
 * [webpack](https://webpack.js.org/) - Static module bundler

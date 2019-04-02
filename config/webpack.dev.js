@@ -3,6 +3,7 @@ const common = require('./webpack.common.js');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const mapStyle = process.env.MAP_STYLE === 'true';
+const postcss = process.env.POST_CSS === 'true';
 
 module.exports = merge (common, {
     mode: 'development',
@@ -18,7 +19,7 @@ module.exports = merge (common, {
         rules: [
             {
                 test: /\.css$/,
-                use: [
+                use: postcss ? [
                     { loader: "style-loader" },
                     {
                         loader: mapStyle ? "css-loader?sourceMap" : "css-loader",
@@ -33,7 +34,10 @@ module.exports = merge (common, {
                         options: {
                             ident: 'postcss',
                         },
-                    },
+                    }
+                ] : [
+                    { loader: "style-loader" },
+                    { loader: mapStyle ? "css-loader?sourceMap" : "css-loader" }
                 ]
             },
             {
