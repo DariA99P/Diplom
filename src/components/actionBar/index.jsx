@@ -1,13 +1,11 @@
 import React from 'react';
-import { Antd } from '@vj/vjcomponentslibrary';
+import { Col, Row } from 'antd';
 
 import ActionWrapper from './actions/index';
 import ButtonWrapper from './buttons/index';
 import TabWrapper from './tabs/index';
 
 import styles from './styles.css';
-
-const { Col, Row } = Antd;
 
 const ActionBar = () => (
   <Row className={styles.actionBar}>

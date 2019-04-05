@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Antd } from '@vj/vjcomponentslibrary';
+import { Layout } from 'antd';
 import Routes from '../Routes';
 import Header from './header';
 import Content from './content';
@@ -8,8 +8,6 @@ import Sidebar from './sidebar';
 import ActionBar from '../actionBar/index';
 
 import styles from './index.css';
-
-const { Layout } = Antd;
 
 class Main extends Component {
   state = {

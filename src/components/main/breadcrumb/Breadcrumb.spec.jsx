@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Breadcrumb } from '.';
+import { BreadcrumbComponent } from '.';
 
 jest.mock('constants/breadcrumbNameMap', () => ({
   '/home': 'Home',
@@ -14,7 +14,7 @@ describe('<Breadcrumb />', () => {
     const location = { pathname: 'home/users/my-account' };
 
     it('should renders properly', () => {
-      const wrapper = shallow(<Breadcrumb location={location} />);
+      const wrapper = shallow(<BreadcrumbComponent location={location} />);
       expect(wrapper).toMatchSnapshot();
     });
   });

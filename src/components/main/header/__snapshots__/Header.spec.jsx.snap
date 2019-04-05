@@ -18,7 +18,7 @@ exports[`<Header /> On rendering When header is collapsed should render toggle b
         onClick={[Function]}
         type="menu-unfold"
       />
-      <withRouter(Breadcrumb)
+      <withRouter(BreadcrumbComponent)
         className="templateBreadcrumb"
         style={
           Object {
@@ -36,7 +36,7 @@ exports[`<Header /> On rendering When header is collapsed should render toggle b
       }
     >
       VistaJet Microservice
-      <Tag />
+      <TagComponent />
     </div>
     <div
       className="userInfo"
@@ -55,7 +55,6 @@ exports[`<Header /> On rendering When header is collapsed should render toggle b
           <Menu
             className=""
             focusable={false}
-            prefixCls="ant-menu"
             theme="light"
           >
             <MenuItem>
@@ -64,7 +63,6 @@ exports[`<Header /> On rendering When header is collapsed should render toggle b
           </Menu>
         }
         placement="bottomLeft"
-        prefixCls="ant-dropdown"
         style={
           Object {
             "lineHeight": "1px",
@@ -100,7 +98,7 @@ exports[`<Header /> On rendering When header is not collapsed should not render 
     <div
       className="headerInfo"
     >
-      <withRouter(Breadcrumb)
+      <withRouter(BreadcrumbComponent)
         className="templateBreadcrumb"
         style={
           Object {
@@ -118,7 +116,7 @@ exports[`<Header /> On rendering When header is not collapsed should not render 
       }
     >
       VistaJet Microservice
-      <Tag />
+      <TagComponent />
     </div>
     <div
       className="userInfo"
@@ -137,7 +135,6 @@ exports[`<Header /> On rendering When header is not collapsed should not render 
           <Menu
             className=""
             focusable={false}
-            prefixCls="ant-menu"
             theme="light"
           >
             <MenuItem>
@@ -146,7 +143,6 @@ exports[`<Header /> On rendering When header is not collapsed should not render 
           </Menu>
         }
         placement="bottomLeft"
-        prefixCls="ant-dropdown"
         style={
           Object {
             "lineHeight": "1px",

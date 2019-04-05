@@ -1,23 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Antd } from '@vj/vjcomponentslibrary';
+import {
+  Layout,
+  Icon,
+  Row,
+  Menu,
+  Dropdown,
+} from 'antd';
 import Clock from '../../shared/clock';
 import Breadcrumb from '../breadcrumb';
 import Tag from './Tag';
 
-
 import styles from './styles.css';
 
 export function Header({ collapsed, name, toggle }) {
-  const {
-    Layout,
-    Icon,
-    Row,
-    Menu,
-    Dropdown,
-  } = Antd;
-
   const { Header: AntHeader } = Layout;
 
   const menu = (

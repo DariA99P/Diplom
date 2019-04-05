@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Antd } from '@vj/vjcomponentslibrary';
+import { Row, Col, Button } from 'antd';
 
 import nook from '../../../utils/nook';
 
@@ -10,8 +10,6 @@ import notFoundImg from '../../../assets/images/not_found.png';
 import styles from './styles.css';
 
 function NotFound({ history }) {
-  const { Row, Col, Button } = Antd;
-
   return (
     <Row
       type="flex"

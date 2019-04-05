@@ -1,7 +1,5 @@
 import React from 'react';
-import { Antd } from '@vj/vjcomponentslibrary';
-
-const { Button, Icon } = Antd;
+import { Button, Icon } from 'antd';
 
 const ButtonWrapper = () => (
   <div>

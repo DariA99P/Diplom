@@ -4,7 +4,6 @@ exports[`<Tag /> On rendering When appliction environment is defferent from PROD
 <Tag
   closable={false}
   color="blue"
-  prefixCls="ant-tag"
   style={
     Object {
       "cursor": "context-menu",

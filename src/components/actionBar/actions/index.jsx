@@ -1,7 +1,5 @@
 import React from 'react';
-import { Antd } from '@vj/vjcomponentslibrary';
-
-const { Input } = Antd;
+import { Input } from 'antd';
 
 const ActionWrapper = () => (
   <div>

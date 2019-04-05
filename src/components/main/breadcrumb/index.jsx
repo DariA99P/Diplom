@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { withRouter, Link } from 'react-router-dom';
-import { Antd } from '@vj/vjcomponentslibrary';
+import { Breadcrumb } from 'antd';
 
 import breadcrumbNameMap from '../../../constants/breadcrumbNameMap';
 
-export function Breadcrumb({ location, ...others }) {
-  const { Breadcrumb: AntBreadcrumb } = Antd;
+const AntBreadcrumb = Breadcrumb;
+
+export function BreadcrumbComponent({ location, ...others }) {
   const pathSnippets = location.pathname.split('/').filter(i => i);
   const extraBreadcrumbItems = pathSnippets.map((_, index) => {
     const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
@@ -34,10 +35,10 @@ export function Breadcrumb({ location, ...others }) {
   );
 }
 
-Breadcrumb.propTypes = {
+BreadcrumbComponent.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string,
   }).isRequired,
 };
 
-export default withRouter(Breadcrumb);
+export default withRouter(BreadcrumbComponent);

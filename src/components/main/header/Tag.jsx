@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { Antd } from '@vj/vjcomponentslibrary';
+import { Tag } from 'antd';
 
 import defineEnvironment from '../../../utils/environmentDefinition';
 
+const AntTag = Tag;
 
-function Tag() {
-  const { Tag: AntTag } = Antd;
-
+function TagComponent() {
   const {
     color: envColor,
     label: envLabel,
@@ -25,4 +24,4 @@ function Tag() {
   }
   return null;
 }
-export default Tag;
+export default TagComponent;

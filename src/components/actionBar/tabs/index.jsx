@@ -1,9 +1,8 @@
 import React from 'react';
-import { Antd } from '@vj/vjcomponentslibrary';
+import { Menu } from 'antd';
 
 import styles from './styles.css';
 
-const { Menu } = Antd;
 const { Item } = Menu;
 
 const TabWrapper = () => (

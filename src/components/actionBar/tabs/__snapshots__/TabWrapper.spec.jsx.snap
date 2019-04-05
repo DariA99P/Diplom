@@ -9,7 +9,6 @@ exports[`<TabWrapper /> On rendering should render properly 1`] = `
     focusable={false}
     mode="horizontal"
     onClick={[Function]}
-    prefixCls="ant-menu"
     theme="light"
   >
     <MenuItem>

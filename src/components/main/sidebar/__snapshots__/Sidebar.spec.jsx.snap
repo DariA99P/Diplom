@@ -7,9 +7,9 @@ exports[`<Sidebar /> When rendering should renders properly 1`] = `
   collapsedWidth={0}
   collapsible={true}
   defaultCollapsed={false}
-  prefixCls="ant-layout-sider"
   reverseArrow={false}
   style={Object {}}
+  theme="dark"
   trigger={null}
   width={255}
 >
@@ -74,9 +74,7 @@ exports[`<Sidebar /> When rendering should renders properly 1`] = `
     <Search
       className="antSearch"
       enterButton={false}
-      inputPrefixCls="ant-input"
       onSearch={[Function]}
-      prefixCls="ant-input-search"
       style={
         Object {
           "width": 200,
@@ -89,7 +87,6 @@ exports[`<Sidebar /> When rendering should renders properly 1`] = `
     focusable={false}
     inlineCollapsed={false}
     mode="inline"
-    prefixCls="ant-menu"
     theme="dark"
   >
     <MenuItem
@@ -328,7 +325,7 @@ exports[`<Sidebar /> When rendering should renders properly 1`] = `
             }
           }
         >
-          <SettingsIcon
+          <CogIcon
             className="mdi-spin"
             size="18"
           />

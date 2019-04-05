@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Tag from './Tag';
+import TagComponent from './Tag';
 
 jest.mock('utils/environmentDefinition', () => () => ({
   code: 'DEV',
@@ -12,7 +12,7 @@ jest.mock('utils/environmentDefinition', () => () => ({
 describe('<Tag />', () => {
   describe('On rendering', () => {
     describe('When appliction environment is defferent from PROD', () => {
-      const tree = shallow(<Tag />);
+      const tree = shallow(<TagComponent />);
 
       it('should renders a tag informing the environment', () => {
         expect(tree).toMatchSnapshot();
