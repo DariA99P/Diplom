@@ -38,6 +38,16 @@ module.exports = {
                     }
                 ]
             },
+            // Vendor CSS loader
+            // This is necessary to pack third party libraries like antd
+            {
+                test: /\.css$/,
+                include: path.resolve(__dirname, '../node_modules'),
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" }
+                ],
+            },
         ]
     },
     plugins: [
