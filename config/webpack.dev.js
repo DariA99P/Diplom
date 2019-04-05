@@ -20,6 +20,7 @@ module.exports = merge (common, {
         rules: [
             {
                 test: /\.css$/,
+                exclude: path.resolve(__dirname, '../node_modules'),
                 use: postcss ? [
                     { loader: "style-loader" },
                     {
