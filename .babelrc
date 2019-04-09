@@ -5,14 +5,18 @@
     "react",
     "stage-0"
   ],
-  "plugins": [
-    [
-      "import",
-      {
-        "libraryName": "antd",
-        "libraryDirectory": "lib",
-        "style": "css"
-      }
-    ]
-  ]
+  "env": {
+    "development": {
+      "plugins": [
+        "transform-runtime",
+        ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
+      ]
+    },
+    "production": {
+      "plugins": [["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]]
+    },
+    "test": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    }
+  }
 }
