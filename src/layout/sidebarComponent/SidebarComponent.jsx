@@ -1,18 +1,16 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-import {
-  AccountCardDetailsIcon,
-  AirportIcon,
-  BulletinBoardIcon,
-  GestureDoubleTapIcon,
-  AccountStarIcon,
-  WalletMembershipIcon,
-  FinanceIcon,
-  CogIcon,
-  InboxMultipleIcon,
-  NutritionIcon,
-} from 'mdi-react';
+import AccountCardDetailsIcon from 'mdi-react/AccountCardDetailsIcon';
+import AirportIcon from 'mdi-react/AirportIcon';
+import BulletinBoardIcon from 'mdi-react/BulletinBoardIcon';
+import GestureDoubleTapIcon from 'mdi-react/GestureDoubleTapIcon';
+import AccountStarIcon from 'mdi-react/AccountStarIcon';
+import WalletMembershipIcon from 'mdi-react/WalletMembershipIcon';
+import FinanceIcon from 'mdi-react/FinanceIcon';
+import CogIcon from 'mdi-react/CogIcon';
+import InboxMultipleIcon from 'mdi-react/InboxMultipleIcon';
+import NutritionIcon from 'mdi-react/NutritionIcon';
 
 import {
   Layout,
