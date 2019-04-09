@@ -53,6 +53,7 @@ module.exports = {
     plugins: [
         new HtmlWebPackPlugin({
             template: path.resolve(__dirname, '../public', 'index.html'),
+            favicon: path.resolve(__dirname, '../public/icon', 'favicon-32x32.png')
         }),
         new GenerateJsonPlugin('keycloak.json', keycloak),
         // Copy environment configuration file to the production bundle
