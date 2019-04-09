@@ -21,8 +21,8 @@ const environmentInfo = {
   },
 };
 
-function getEnvironemntInfo(env) {
+function getEnvironmentInfo(env) {
   return environmentInfo[env];
 }
 
-export default getEnvironemntInfo;
+export default getEnvironmentInfo;

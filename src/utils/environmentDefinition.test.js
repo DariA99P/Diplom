@@ -1,9 +1,9 @@
-import getEnvironemntInfo from './environmentDefinition';
+import getEnvironmentInfo from './environmentDefinition';
 
-describe('getEnvironemntInfo', () => {
+describe('getEnvironmentInfo', () => {
   describe('Given a valid env', () => {
     it('should return its color and label data', () => {
-      const expectedValue = getEnvironemntInfo('DEV');
+      const expectedValue = getEnvironmentInfo('DEV');
       expect(expectedValue).toEqual({
         label: 'DEV',
         color: 'blue',
@@ -13,7 +13,7 @@ describe('getEnvironemntInfo', () => {
 
   describe('Given an invalid env', () => {
     it('should return undefined', () => {
-      const expectedValue = getEnvironemntInfo('NOT_FOUND');
+      const expectedValue = getEnvironmentInfo('NOT_FOUND');
       expect(expectedValue).toBeUndefined();
     });
   });

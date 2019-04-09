@@ -1,15 +1,19 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Main from './components/main';
 
-import store from './store';
+// Internationalization
+import { LocaleProvider } from 'antd';
+// import ptBR from 'antd/lib/locale-provider/pt_BR';
+import enUs from 'antd/lib/locale-provider/en_US';
+
+import store from './redux/store';
+import Main from './pages/Main';
 
 const App = () => (
   <Provider store={store}>
-    <Router>
+    <LocaleProvider locale={enUs}>
       <Main />
-    </Router>
+    </LocaleProvider>
   </Provider>
 );
 

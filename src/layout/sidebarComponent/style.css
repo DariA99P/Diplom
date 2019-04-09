@@ -1,0 +1,35 @@
+.sidebar {
+  box-shadow: 2px 0px 6px 0px rgba(0, 21, 41, 0.35);
+}
+
+.logo {
+  padding: 10px 0px;
+}
+
+.trigger-fold {
+  color: #FFFFFF;
+  font-size: 18px;
+  line-height: 64px !important;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color .3s;
+}
+
+.trigger-fold:hover {
+  color: #1890ff;
+}
+
+.ant-search > span > i {
+  color: #364656 !important;
+}
+
+.ant-search > input {
+  color: #FFF;
+  background-color: #001529;
+  border-color: #364656;
+  z-index: 1;
+}
+
+.sidebar.ant-layout-sider {
+  z-index: 1;
+}

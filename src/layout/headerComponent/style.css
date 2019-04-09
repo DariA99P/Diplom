@@ -1,0 +1,42 @@
+.template-header {
+  background: #002140;
+  padding: 0;
+}
+
+.template-breadcrumb a {
+  font-size: 16px;
+  color: #FFFFFF;
+  opacity: 0.65;
+  margin-left: 16px;
+}
+
+.template-sso {
+  line-height: 1px;
+}
+
+.trigger-unfold {
+  font-size: 18px;
+  padding-left: 16px;
+  cursor: pointer;
+  transition: color .3s;
+  color: #FFFFFF;
+}
+
+.trigger-unfold:hover {
+  color: #1890ff;
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.85);
+  margin-right: 16px;
+  line-height: 18px;
+}
