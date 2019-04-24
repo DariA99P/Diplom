@@ -1,0 +1,18 @@
+.ant-search{
+  width: 200px;
+}
+
+.ant-search > span > i {
+  color: #364656 !important;
+}
+
+.ant-search > input {
+  color: #FFF;
+  background-color: #001529;
+  border-color: #364656;
+  z-index: 1;
+}
+
+.search-row {
+  padding: 16px 0;
+}

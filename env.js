@@ -8,4 +8,6 @@ This file will be replaced according to DevOps environment configuration and sho
 window.ENV = {
   MS_ENVIRONMENT: 'DEV', // possibly environments: DEV, QA, UAT, DEMO, PROD
   MS_BACKEND_URL: 'http://localhost:8081',
+  SIDEBAR_BACKEND_URL: 'http://localhost:4000',
+  SIDEBAR_ENABLED: false,
 };

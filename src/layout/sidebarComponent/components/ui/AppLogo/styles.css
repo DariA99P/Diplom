@@ -1,0 +1,30 @@
+.icon-row {
+  background-color: --navy-two, #002140;
+}
+
+.logo {
+  padding: 10px 0px;
+}
+
+.logo-container {
+  text-align: center ;
+  height: 100%;
+}
+
+.app-logo {
+  width: 70%;
+  padding-top: 8%;
+}
+
+.trigger-fold {
+  color: var(--white-65, #FFFFFF);
+  font-size: 18px;
+  line-height: 64px !important;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color .3s;
+}
+
+.trigger-fold:hover {
+  color: #1890ff;
+}
