@@ -11,11 +11,9 @@ import { Layout } from 'antd';
 import Header from '../layout/headerComponent/HeaderComponent';
 import Footer from '../layout/footerComponent/FooterComponent';
 import Sidebar from '../layout/sidebarComponent/SidebarComponent';
-import DinamicSidebar from '../layout/sidebarComponent/DinamicSidebar';
 
 import Home from './home/Home';
 import NotFound from './notFound/NotFound';
-import { SIDEBAR_ENABLED } from '../utils/constants';
 
 import '../assets/styles/styles.css';
 
@@ -34,19 +32,12 @@ class Main extends Component {
     });
   }
 
-  renderSidebar(collapsed) {
-    if (SIDEBAR_ENABLED) {
-      return <DinamicSidebar collapsed={collapsed} toggle={this.toggleSidebar} />;
-    }
-    return <Sidebar collapsed={collapsed} toggle={this.toggleSidebar} />;
-  }
-
   render() {
     const { collapsed } = this.state;
     return (
       <Router>
         <Layout style={{ minHeight: '100vh' }}>
-          { this.renderSidebar(collapsed) }
+          <Sidebar collapsed={collapsed} toggle={this.toggleSidebar} />
           <Layout>
             <Header collapsed={collapsed} toggle={this.toggleSidebar} />
             <Content style={{ margin: '16px 16px 0 16px' }}>

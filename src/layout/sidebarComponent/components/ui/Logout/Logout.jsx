@@ -8,7 +8,7 @@ import {
 } from 'antd';
 import { PropTypes } from 'prop-types';
 
-import styles from './styles.css';
+import './style.css';
 
 class Logout extends Component {
   logout() {
@@ -23,10 +23,9 @@ class Logout extends Component {
 
   render() {
     return (
-      <Affix className={styles.logout}>
-        <Divider className={styles.divider} />
-        <Menu className={styles.logoutMenu} mode="inline" theme="dark">
-          {/* <Divider className="divider" /> */}
+      <Affix className="logout">
+        <Divider className="divider" />
+        <Menu className="logoutMenu" mode="inline" theme="dark">
           <Menu.Item onClick={() => this.logout()}>
             <div>Logout <Icon type="logout" /></div>
           </Menu.Item>

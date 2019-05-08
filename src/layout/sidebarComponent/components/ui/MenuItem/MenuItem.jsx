@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 
 import { Menu } from 'antd';
 
-// const { Menu } = Antd;
+import './style.css';
 
 const MenuItem = ({ collapsed, items }) => (
   <Menu
@@ -13,8 +13,8 @@ const MenuItem = ({ collapsed, items }) => (
   >
     {
       items.map(item => (
-        <Menu.Item key={item.id}>
-          <a href={item.url} target="_blank" rel="noopener noreferrer" id={item.id}>{item.name}</a>
+        <Menu.Item key={item.id} className="menu-item">
+          <a href={item.url} target="_blank" rel="noopener noreferrer" className="menu-item-name" id={item.id}>{item.name}</a>
         </Menu.Item>),
       )}
   </Menu>
