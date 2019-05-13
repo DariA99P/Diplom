@@ -25,7 +25,7 @@ class Logout extends Component {
     return (
       <Affix className="logout">
         <Divider className="divider" />
-        <Menu className="logoutMenu" mode="inline" theme="dark">
+        <Menu className="logout-menu" mode="inline" theme="dark">
           <Menu.Item onClick={() => this.logout()}>
             <div>Logout <Icon type="logout" /></div>
           </Menu.Item>
