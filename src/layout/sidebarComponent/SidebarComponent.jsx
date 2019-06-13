@@ -117,8 +117,9 @@ class SideBar extends React.Component {
             items={this.filterItems(query)}
             query={query}
           />
-          <Logout keycloak={store.getState().keycloak} />
+          <Menu.Item collapsed={collapsed} />
         </Menu>
+        <Logout keycloak={store.getState().keycloak} />
       </Sider>
     );
   }
