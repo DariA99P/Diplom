@@ -115,7 +115,6 @@ class SideBar extends React.Component {
           <MenuItem
             collapsed={collapsed}
             items={this.filterItems(query)}
-            query={query}
           />
           <Menu.Item collapsed={collapsed} />
         </Menu>
