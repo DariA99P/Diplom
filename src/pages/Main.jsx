@@ -34,7 +34,6 @@ class Main extends Component {
 
   render() {
     const { collapsed } = this.state;
-
     return (
       <Router>
         <Layout style={{ minHeight: '100vh' }}>

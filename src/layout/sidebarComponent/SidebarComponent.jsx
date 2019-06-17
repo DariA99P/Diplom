@@ -1,16 +1,8 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { GraphQLClient } from 'graphql-request';
 
-import AccountCardDetailsIcon from 'mdi-react/AccountCardDetailsIcon';
-import AirportIcon from 'mdi-react/AirportIcon';
-import BulletinBoardIcon from 'mdi-react/BulletinBoardIcon';
-import GestureDoubleTapIcon from 'mdi-react/GestureDoubleTapIcon';
-import AccountStarIcon from 'mdi-react/AccountStarIcon';
-import WalletMembershipIcon from 'mdi-react/WalletMembershipIcon';
-import FinanceIcon from 'mdi-react/FinanceIcon';
-import CogIcon from 'mdi-react/CogIcon';
-import InboxMultipleIcon from 'mdi-react/InboxMultipleIcon';
-import NutritionIcon from 'mdi-react/NutritionIcon';
+import { Link } from 'react-router-dom';
 
 import {
   Layout,
@@ -21,129 +13,116 @@ import {
   Input,
 } from 'antd';
 
-import { Link } from 'react-router-dom';
+import MenuItem from './components/ui/MenuItem/MenuItem';
+import Logout from './components/ui/Logout/Logout';
+
+
+import store from '../../redux/store';
+
+import { SIDEBAR_BACKEND_URL, SIDEBAR_ENABLED } from '../../utils/constants';
+import ALL_APPS_QUERY from '../../dataSource/graphql-requests';
 
 import Logo from '../../assets/images/vj_logo.png';
 
 import './style.css';
 
-const { SubMenu } = Menu;
 const { Sider } = Layout;
 const { Search } = Input;
 
-const SideBar = ({ collapsed, toggle }) => (
-  <Sider
-    className="sidebar"
-    width={255}
-    trigger={null}
-    collapsible
-    collapsed={collapsed}
-    collapsedWidth={0}
-  >
-    <Row style={{ backgroundColor: '#002140' }}>
-      <Col span={18}>
-        <div className="logo-container" style={{ textAlign: 'center', height: '100%' }}>
-          <Link to="/">
-            <img src={Logo} className="App-logo" alt="Logo" style={{ width: '70%', paddingTop: '8%' }} />
-          </Link>
-        </div>
-      </Col>
-      <Col span={6}>
-        <Icon
-          className="trigger-fold"
-          type="menu-fold"
-          onClick={() => { toggle(); }}
-        />
-      </Col>
-    </Row>
-    <Row type="flex" justify="space-around" style={{ padding: '16px 0' }}>
-      <Search
-        className="ant-search"
-        onSearch={() => { }}
-        style={{ width: 200 }}
-      />
-    </Row>
-    <Menu
-      inlineCollapsed={collapsed}
-      mode="inline"
-      theme="dark"
-    >
-      <Menu.Item key="1">
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <BulletinBoardIcon size="18" />
-          <span style={{ marginLeft: '6px' }}>Reports</span>
-        </div>
-      </Menu.Item>
-      <Menu.Item key="2">
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <GestureDoubleTapIcon size="18" />
-          <span style={{ marginLeft: '6px' }}>On Demand</span>
-        </div>
-      </Menu.Item>
-      <Menu.Item key="3">
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <AirportIcon size="18" />
-          <span style={{ marginLeft: '6px' }}>Operations</span>
-        </div>
-      </Menu.Item>
-      <Menu.Item key="4">
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <AccountCardDetailsIcon size="18" />
-          <span style={{ marginLeft: '6px' }}>Program</span>
-        </div>
-      </Menu.Item>
-      <Menu.Item key="5">
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <WalletMembershipIcon size="18" />
-          <span style={{ marginLeft: '6px' }}>Membership</span>
-        </div>
-      </Menu.Item>
-      <Menu.Item key="6">
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <FinanceIcon size="18" />
-          <span style={{ marginLeft: '6px' }}>Finance</span>
-        </div>
-      </Menu.Item>
-      <Menu.Item key="7">
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <AccountStarIcon size="18" />
-          <span style={{ marginLeft: '6px' }}>Customer Service</span>
-        </div>
-      </Menu.Item>
-      <Menu.Item key="8">
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <InboxMultipleIcon size="18" />
-          <span style={{ marginLeft: '6px' }}>Service Providers</span>
-        </div>
-      </Menu.Item>
-      <Menu.Item key="9">
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <NutritionIcon size="18" />
-          <span style={{ marginLeft: '6px' }}>Catering</span>
-        </div>
-      </Menu.Item>
-      <SubMenu
-        key="sub1"
-        title={(
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <CogIcon size="18" className="mdi-spin" />
-            <span className="mdi mdi-access-point" />
-            <span style={{ marginLeft: '6px' }}>Administration</span>
-          </div>
-        )}
+class SideBar extends React.Component {
+  state = {
+    query: '',
+    data: [],
+  }
+
+  componentDidMount() {
+    if (SIDEBAR_ENABLED) {
+      this.getAllApplications();
+    }
+  }
+
+  async getAllApplications() {
+    const keyCloakToken = store.getState().keycloak.token;
+    const graphQLClient = new GraphQLClient(SIDEBAR_BACKEND_URL, {
+      headers: {
+        authorization: keyCloakToken ? `Bearer ${keyCloakToken}` : '',
+      },
+    });
+
+    const result = await graphQLClient.request(ALL_APPS_QUERY);
+    this.setState({ data: result.apps });
+  }
+
+  handleSearch(query) {
+    this.setState({ query });
+  }
+
+  filterItems(query) {
+    const { data } = this.state;
+    if (data === null) return [];
+    return (data.filter(item => item.name.toLowerCase()
+      .indexOf(query.toLowerCase()) !== -1));
+  }
+
+  render() {
+    const {
+      collapsed,
+      toggle,
+    } = this.props;
+
+    const {
+      query,
+    } = this.state;
+
+    return (
+      <Sider
+        className="sidebar"
+        width={255}
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        collapsedWidth={0}
       >
-        <Menu.Item key="10">Aircrafts</Menu.Item>
-        <SubMenu key="sub2" title="Airports">
-          <Menu.Item key="11">Airport Center</Menu.Item>
-        </SubMenu>
-        <Menu.Item key="12">Companies</Menu.Item>
-        <Menu.Item key="13">People</Menu.Item>
-        <Menu.Item key="14">Black List</Menu.Item>
-        <Menu.Item key="15">Service Areas</Menu.Item>
-      </SubMenu>
-    </Menu>
-  </Sider>
-);
+        <Row style={{ backgroundColor: '#002140' }}>
+          <Col span={18}>
+            <div className="logo-container" style={{ textAlign: 'center', height: '100%' }}>
+              <Link to="/">
+                <img src={Logo} className="App-logo" alt="Logo" style={{ width: '70%', paddingTop: '8%' }} />
+              </Link>
+            </div>
+          </Col>
+          <Col span={6}>
+            <Icon
+              className="trigger-fold"
+              type="menu-fold"
+              onClick={() => { toggle(); }}
+            />
+          </Col>
+        </Row>
+        <Row type="flex" justify="space-around" style={{ padding: '16px 0' }}>
+          <Search
+            className="ant-search"
+            value={query}
+            onChange={e => this.handleSearch(e.target.value)}
+            style={{ width: 200 }}
+          />
+        </Row>
+        <Menu
+          inlineCollapsed={collapsed}
+          mode="inline"
+          theme="dark"
+        >
+          <MenuItem
+            collapsed={collapsed}
+            items={this.filterItems(query)}
+          />
+          <Menu.Item collapsed={collapsed} />
+        </Menu>
+        <Logout keycloak={store.getState().keycloak} />
+      </Sider>
+    );
+  }
+}
 
 SideBar.propTypes = {
   collapsed: PropTypes.bool,
