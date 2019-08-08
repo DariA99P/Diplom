@@ -10,4 +10,7 @@ window.ENV = {
   MS_BACKEND_URL: 'http://localhost:8081',
   SIDEBAR_BACKEND_URL: 'http://localhost:4000',
   SIDEBAR_ENABLED: false,
+  RAYGUN_API_KEY: '',
+  RAYGUN_ENABLE_CRASH_REPORT: false,
+  RAYGUN_ENABLE_USER_MONITORING: false,
 };

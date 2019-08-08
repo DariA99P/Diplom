@@ -2,10 +2,18 @@
 // export const CONST_A = 'A';
 // export const CONST_B = 'B';
 
-const SIDEBAR_BACKEND_URL = window.ENV ? window.ENV.SIDEBAR_BACKEND_URL : '';
-const SIDEBAR_ENABLED = window.ENV ? window.ENV.SIDEBAR_ENABLED : false;
+export const SIDEBAR_BACKEND_URL = window.ENV ? window.ENV.SIDEBAR_BACKEND_URL : '';
 
-export {
-  SIDEBAR_BACKEND_URL,
-  SIDEBAR_ENABLED,
-};
+export const SIDEBAR_ENABLED = window.ENV ? window.ENV.SIDEBAR_ENABLED : false;
+
+export const MS_BACKEND_URL = (window && window.ENV
+  && window.ENV.MS_BACKEND_URL) || '';
+
+export const RAYGUN_API_KEY = (window && window.ENV
+  && window.ENV.RAYGUN_API_KEY) || '';
+
+export const RAYGUN_ENABLE_CRASH_REPORT = (window && window.ENV
+  && window.ENV.RAYGUN_ENABLE_CRASH_REPORT) || false;
+  
+export const RAYGUN_ENABLE_USER_MONITORING = (window && window.ENV
+  && window.ENV.RAYGUN_ENABLE_USER_MONITORING) || false;
