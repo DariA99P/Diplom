@@ -6,6 +6,12 @@ import Keycloak from 'keycloak-js';
 import App from './App';
 import store from './redux/store';
 
+import {
+  RAYGUN_API_KEY,
+  RAYGUN_ENABLE_CRASH_REPORT,
+  RAYGUN_ENABLE_USER_MONITORING,
+} from './utils/constants';
+
 const keycloak = Keycloak();
 
 keycloak.init({
@@ -13,6 +19,22 @@ keycloak.init({
 }).success((authenticated) => {
   if (authenticated) {
     store.dispatch({ type: 'LOGIN', payload: { ...keycloak } });
+    // start Raygun monitoring
+    window.rg4js('apiKey', RAYGUN_API_KEY);
+    window.rg4js('enableCrashReporting', RAYGUN_ENABLE_CRASH_REPORT);
+    window.rg4js('enablePulse', RAYGUN_ENABLE_USER_MONITORING);
+
+    const { tokenParsed } = keycloak;
+
+    window.rg4js('setUser', {
+      identifier: tokenParsed.preferred_username,
+      isAnonymous: false,
+      email: tokenParsed.email,
+      firstName: tokenParsed.given_name,
+      fullName: `${tokenParsed.given_name} ${tokenParsed.family_name}`,
+    });
+
+    // start React APP
     ReactDOM.render(
       React.createElement(App),
       document.getElementById('root'),
