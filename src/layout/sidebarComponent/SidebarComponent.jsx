@@ -28,11 +28,13 @@ import './style.css';
 
 const { Sider } = Layout;
 const { Search } = Input;
+const { SubMenu } = Menu;
 
 class SideBar extends React.Component {
   state = {
     query: '',
     data: [],
+    domains: [],
   }
 
   componentDidMount() {
@@ -50,7 +52,18 @@ class SideBar extends React.Component {
     });
 
     const result = await graphQLClient.request(ALL_APPS_QUERY);
-    this.setState({ data: result.apps });
+
+    const { apps } = result;
+    const domainSet = new Set();
+
+    apps.forEach((app) => {
+      domainSet.add(app.domain);
+    });
+
+    this.setState({
+      data: apps,
+      domains: [...domainSet],
+    });
   }
 
   handleSearch(query) {
@@ -62,6 +75,22 @@ class SideBar extends React.Component {
     if (data === null) return [];
     return (data.filter(item => item.name.toLowerCase()
       .indexOf(query.toLowerCase()) !== -1));
+  }
+
+  renderSubMenu() {
+    const { domains, query } = this.state;
+    return domains.map(domain => (
+      <SubMenu
+        key={domain || 'none'}
+        title={domain || 'No Domain'}
+      >
+        <MenuItem
+          collapsed
+          domain={domain}
+          items={this.filterItems(query)}
+        />
+      </SubMenu>
+    ));
   }
 
   render() {
@@ -112,10 +141,7 @@ class SideBar extends React.Component {
           mode="inline"
           theme="dark"
         >
-          <MenuItem
-            collapsed={collapsed}
-            items={this.filterItems(query)}
-          />
+          {this.renderSubMenu()}
           <Menu.Item collapsed={collapsed} />
         </Menu>
         <Logout keycloak={store.getState().keycloak} />

@@ -33,3 +33,20 @@
 .sidebar.ant-layout-sider {
   z-index: 1;
 }
+
+.menu-item {
+  font-size: 12px;
+  line-height: 42px !important;
+  padding: 0 32px;
+  cursor: pointer;
+  transition: color .3s;
+}
+
+.menu-group {
+  display: flex;
+  align-items: center;
+}
+
+.menu-group-name{
+  margin-left: 6px;
+}
