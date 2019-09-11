@@ -16,7 +16,6 @@ import {
 import MenuItem from './components/ui/MenuItem/MenuItem';
 import Logout from './components/ui/Logout/Logout';
 
-
 import store from '../../redux/store';
 
 import { SIDEBAR_BACKEND_URL, SIDEBAR_ENABLED } from '../../utils/constants';
@@ -30,11 +29,27 @@ const { Sider } = Layout;
 const { Search } = Input;
 const { SubMenu } = Menu;
 
+const renderSubMenu = (domains, visibleApps) => (
+  domains.map(domain => (
+    <SubMenu
+      key={domain}
+      title={domain}
+    >
+      <MenuItem
+        domain={domain}
+        items={visibleApps}
+      />
+    </SubMenu>
+  )));
+
 class SideBar extends React.Component {
   state = {
     query: '',
-    data: [],
+    allApps: [],
     domains: [],
+    openDomains: [],
+    visibleApps: [],
+    currentApp: [],
   }
 
   componentDidMount() {
@@ -55,42 +70,48 @@ class SideBar extends React.Component {
 
     const { apps } = result;
     const domainSet = new Set();
-
+    const groupAppsByUrl = new Map();
     apps.forEach((app) => {
-      domainSet.add(app.domain);
+      domainSet.add(app.domain || 'Others');
+      groupAppsByUrl.set(app.url, app.name);
     });
 
     this.setState({
-      data: apps,
+      allApps: apps,
       domains: [...domainSet],
+      openDomains: [...domainSet],
+      visibleApps: apps,
+      currentApp: groupAppsByUrl.get(window.location.href),
     });
   }
 
+  onOpenChange = (openedDomains) => {
+    const { domains } = this.state;
+    const latestOpenKey = openedDomains.find(key => openedDomains.indexOf(key) === -1);
+    if (domains.indexOf(latestOpenKey) === -1) {
+      this.setState({ openDomains: openedDomains });
+    } else {
+      this.setState({
+        openDomains: latestOpenKey ? [latestOpenKey] : [],
+      });
+    }
+  };
+
   handleSearch(query) {
-    this.setState({ query });
+    const visibleApps = this.filterApps(query);
+    const filteredDomains = new Set();
+    visibleApps.forEach((app) => {
+      filteredDomains.add(app.domain || 'Others');
+    });
+    this.setState({ query, domains: [...filteredDomains], visibleApps });
   }
 
-  filterItems(query) {
-    const { data } = this.state;
-    if (data === null) return [];
-    return (data.filter(item => item.name.toLowerCase()
+  filterApps(query) {
+    const { allApps } = this.state;
+    if (query.length < 3 && query.length >= 0) return allApps;
+    if (allApps === null) return [];
+    return (allApps.filter(item => item.name.toLowerCase()
       .indexOf(query.toLowerCase()) !== -1));
-  }
-
-  renderSubMenu() {
-    const { domains, query } = this.state;
-    return domains.map(domain => (
-      <SubMenu
-        key={domain || 'none'}
-        title={domain || 'No Domain'}
-      >
-        <MenuItem
-          collapsed
-          domain={domain}
-          items={this.filterItems(query)}
-        />
-      </SubMenu>
-    ));
   }
 
   render() {
@@ -101,6 +122,10 @@ class SideBar extends React.Component {
 
     const {
       query,
+      domains,
+      openDomains,
+      visibleApps,
+      currentApp,
     } = this.state;
 
     return (
@@ -137,12 +162,14 @@ class SideBar extends React.Component {
           />
         </Row>
         <Menu
-          inlineCollapsed={collapsed}
           mode="inline"
           theme="dark"
+          openKeys={openDomains}
+          onOpenChange={this.onOpenChange}
+          selectedKeys={currentApp}
         >
-          {this.renderSubMenu()}
-          <Menu.Item collapsed={collapsed} />
+          {renderSubMenu(domains, visibleApps)}
+          <Menu.Item />
         </Menu>
         <Logout keycloak={store.getState().keycloak} />
       </Sider>

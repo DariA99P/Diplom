@@ -5,24 +5,23 @@ import { Menu } from 'antd';
 
 import './style.css';
 
-const MenuItem = ({ collapsed, items, domain }) => {
-  const itensSet = new Set();
+const MenuItem = ({ items, domain }) => {
+  const itemsSet = new Set();
 
   const filteredItens = items.filter((item) => {
-    const duplicate = itensSet.has(item.id);
-    itensSet.add(item.id);
+    const duplicate = itemsSet.has(item.id);
+    itemsSet.add(item.id);
     return !duplicate;
   });
 
   return (
     <Menu
-      inlineCollapsed={collapsed}
       mode="inline"
       theme="dark"
     >
       {
         filteredItens.map((item) => {
-          if (item.domain === domain) {
+          if (item.domain === domain || (!item.domain && domain === 'Others')) {
             return (
               <Menu.Item key={item.id} className="menu-item">
                 <a href={item.url} target="_blank" rel="noopener noreferrer" className="menu-item-name" id={item.id}>{item.name}</a>
@@ -35,13 +34,19 @@ const MenuItem = ({ collapsed, items, domain }) => {
 };
 
 MenuItem.propTypes = {
-  collapsed: PropTypes.bool,
-  items: PropTypes.arrayOf.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      domain: PropTypes.string,
+      name: PropTypes.string,
+      url: PropTypes.string,
+    }),
+  ),
   domain: PropTypes.string,
 };
 
 MenuItem.defaultProps = {
-  collapsed: false,
+  items: [],
   domain: '',
 };
 
