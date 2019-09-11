@@ -36,8 +36,8 @@ class Logout extends Component {
 }
 
 Logout.propTypes = {
-  history: PropTypes.func.isRequired,
-  keycloak: PropTypes.func.isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+  keycloak: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default withRouter(Logout);
