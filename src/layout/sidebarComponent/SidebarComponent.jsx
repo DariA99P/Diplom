@@ -13,7 +13,6 @@ import {
   Input,
 } from 'antd';
 
-import MenuItem from './components/ui/MenuItem/MenuItem';
 import Logout from './components/ui/Logout/Logout';
 
 import store from '../../redux/store';
@@ -29,18 +28,33 @@ const { Sider } = Layout;
 const { Search } = Input;
 const { SubMenu } = Menu;
 
-const renderSubMenu = (domains, visibleApps) => (
-  domains.map(domain => (
+const renderSubMenu = (domains, visibleApps) => {
+  const itemsSet = new Set();
+
+  const filteredItems = visibleApps.filter((item) => {
+    const duplicate = itemsSet.has(item.id);
+    itemsSet.add(item.id);
+    return !duplicate;
+  });
+  return domains.map(domain => (
     <SubMenu
       key={domain}
       title={domain}
     >
-      <MenuItem
-        domain={domain}
-        items={visibleApps}
-      />
+      {
+        filteredItems.map((item) => {
+          if (item.domain === domain || (!item.domain && domain === 'Others')) {
+            return (
+              <Menu.Item key={item.id} className="menu-item">
+                <a href={item.url} target="_blank" rel="noopener noreferrer" className="menu-item-name" id={item.id}>{item.name}</a>
+              </Menu.Item>);
+          }
+          return null;
+        })
+    }
     </SubMenu>
-  )));
+  ));
+};
 
 class SideBar extends React.Component {
   state = {
@@ -49,7 +63,7 @@ class SideBar extends React.Component {
     domains: [],
     openDomains: [],
     visibleApps: [],
-    currentApp: [],
+    selectedApp: {},
   }
 
   componentDidMount() {
@@ -89,9 +103,15 @@ class SideBar extends React.Component {
       domains,
       openDomains: [...domainSet],
       visibleApps: apps,
-      currentApp: groupAppsByUrl.get(window.location.href),
+      selectedApp: groupAppsByUrl.get(window.location.href),
     });
   }
+
+  handleClick = (element) => {
+    this.setState({
+      selectedApp: element.key,
+    });
+  };
 
   onOpenChange = (openedDomains) => {
     const { domains } = this.state;
@@ -105,7 +125,7 @@ class SideBar extends React.Component {
     }
   };
 
-  handleSearch(query) {
+  handleSearch = (query) => {
     const visibleApps = this.filterApps(query);
     const filteredDomains = new Set();
     visibleApps.forEach((app) => {
@@ -125,7 +145,7 @@ class SideBar extends React.Component {
     });
   }
 
-  filterApps(query) {
+  filterApps = (query) => {
     const { allApps } = this.state;
     if (query.length < 3 && query.length >= 0) return allApps;
     if (allApps === null) return [];
@@ -144,7 +164,7 @@ class SideBar extends React.Component {
       domains,
       openDomains,
       visibleApps,
-      currentApp,
+      selectedApp,
     } = this.state;
 
     return (
@@ -185,7 +205,8 @@ class SideBar extends React.Component {
           theme="dark"
           openKeys={openDomains}
           onOpenChange={this.onOpenChange}
-          selectedKeys={currentApp}
+          onClick={this.handleClick}
+          selectedKeys={[selectedApp]}
         >
           {renderSubMenu(domains, visibleApps)}
           <Menu.Item />
