@@ -76,9 +76,17 @@ class SideBar extends React.Component {
       groupAppsByUrl.set(app.url, app.name);
     });
 
+    const domains = [...domainSet].sort((a, b) => {
+      if (a === 'Others' && b !== 'Others') { return 1; }
+      if (a !== 'Others' && b === 'Others') { return -1; }
+      if (a > b) { return 1; }
+      if (a < b) { return -1; }
+      return 0;
+    });
+
     this.setState({
       allApps: apps,
-      domains: [...domainSet],
+      domains,
       openDomains: [...domainSet],
       visibleApps: apps,
       currentApp: groupAppsByUrl.get(window.location.href),
@@ -103,7 +111,18 @@ class SideBar extends React.Component {
     visibleApps.forEach((app) => {
       filteredDomains.add(app.domain || 'Others');
     });
-    this.setState({ query, domains: [...filteredDomains], visibleApps });
+
+    const domains = [...filteredDomains].sort((a, b) => {
+      if (a === 'Others' && b !== 'Others') { return 1; }
+      if (a !== 'Others' && b === 'Others') { return -1; }
+      if (a > b) { return 1; }
+      if (a < b) { return -1; }
+      return 0;
+    });
+
+    this.setState({
+      query, domains, openDomains: [...filteredDomains], visibleApps,
+    });
   }
 
   filterApps(query) {
