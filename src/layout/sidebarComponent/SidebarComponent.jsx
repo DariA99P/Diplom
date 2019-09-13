@@ -32,7 +32,7 @@ const findCurrentApplication = (apps) => {
   let currentApp = null;
   const currentLocation = window.location.href;
   apps.forEach((app) => {
-    if (!currentApp && currentLocation.startsWith(app.url)) {
+    if (!currentApp && app.url && currentLocation.startsWith(app.url)) {
       currentApp = app.id;
     }
   });
