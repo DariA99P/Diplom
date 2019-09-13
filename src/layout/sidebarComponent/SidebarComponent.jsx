@@ -28,6 +28,18 @@ const { Sider } = Layout;
 const { Search } = Input;
 const { SubMenu } = Menu;
 
+const findCurrentApplication = (apps) => {
+  let currentApp = null;
+  const currentLocation = window.location.href;
+  apps.forEach((app) => {
+    if (!currentApp && currentLocation.startsWith(app.url)) {
+      currentApp = app.id;
+    }
+  });
+
+  return currentApp;
+};
+
 const renderSubMenu = (domains, visibleApps) => {
   const itemsSet = new Set();
 
@@ -84,10 +96,8 @@ class SideBar extends React.Component {
 
     const { apps } = result;
     const domainSet = new Set();
-    const groupAppsByUrl = new Map();
     apps.forEach((app) => {
       domainSet.add(app.domain || 'Others');
-      groupAppsByUrl.set(app.url, app.name);
     });
 
     const domains = [...domainSet].sort((a, b) => {
@@ -103,15 +113,9 @@ class SideBar extends React.Component {
       domains,
       openDomains: [...domainSet],
       visibleApps: apps,
-      selectedApp: groupAppsByUrl.get(window.location.href),
+      selectedApp: findCurrentApplication(apps),
     });
   }
-
-  handleClick = (element) => {
-    this.setState({
-      selectedApp: element.key,
-    });
-  };
 
   onOpenChange = (openedDomains) => {
     const { domains } = this.state;
@@ -205,7 +209,6 @@ class SideBar extends React.Component {
           theme="dark"
           openKeys={openDomains}
           onOpenChange={this.onOpenChange}
-          onClick={this.handleClick}
           selectedKeys={[selectedApp]}
         >
           {renderSubMenu(domains, visibleApps)}
