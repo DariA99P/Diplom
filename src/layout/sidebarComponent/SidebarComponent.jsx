@@ -75,7 +75,7 @@ class SideBar extends React.Component {
     domains: [],
     openDomains: [],
     visibleApps: [],
-    selectedApp: {},
+    selectedApp: null,
   }
 
   componentDidMount() {
