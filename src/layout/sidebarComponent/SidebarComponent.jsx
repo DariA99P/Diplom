@@ -29,15 +29,9 @@ const { Search } = Input;
 const { SubMenu } = Menu;
 
 const findCurrentApplication = (apps) => {
-  let currentApp = null;
   const currentLocation = window.location.href;
-  apps.forEach((app) => {
-    if (!currentApp && app.url && currentLocation.startsWith(app.url)) {
-      currentApp = app.id;
-    }
-  });
-
-  return currentApp;
+  const currentApp = apps.find((app) => (app.url && currentLocation.startsWith(app.url)));
+  return currentApp && currentApp.id;
 };
 
 const renderSubMenu = (domains, visibleApps) => {
@@ -84,6 +78,12 @@ class SideBar extends React.Component {
     }
   }
 
+  sortDomains = (a, b) => {
+    if (a === 'Others' && b !== 'Others') { return 1; }
+    if (a !== 'Others' && b === 'Others') { return -1; }
+    return a.localeCompare(b);
+  }
+
   async getAllApplications() {
     const keyCloakToken = store.getState().keycloak.token;
     const graphQLClient = new GraphQLClient(SIDEBAR_BACKEND_URL, {
@@ -100,13 +100,7 @@ class SideBar extends React.Component {
       domainSet.add(app.domain || 'Others');
     });
 
-    const domains = [...domainSet].sort((a, b) => {
-      if (a === 'Others' && b !== 'Others') { return 1; }
-      if (a !== 'Others' && b === 'Others') { return -1; }
-      if (a > b) { return 1; }
-      if (a < b) { return -1; }
-      return 0;
-    });
+    const domains = [...domainSet].sort(this.sortDomains);
 
     this.setState({
       allApps: apps,
@@ -136,13 +130,7 @@ class SideBar extends React.Component {
       filteredDomains.add(app.domain || 'Others');
     });
 
-    const domains = [...filteredDomains].sort((a, b) => {
-      if (a === 'Others' && b !== 'Others') { return 1; }
-      if (a !== 'Others' && b === 'Others') { return -1; }
-      if (a > b) { return 1; }
-      if (a < b) { return -1; }
-      return 0;
-    });
+    const domains = [...filteredDomains].sort(this.sortDomains);
 
     this.setState({
       query, domains, openDomains: [...filteredDomains], visibleApps,
@@ -211,8 +199,7 @@ class SideBar extends React.Component {
           onOpenChange={this.onOpenChange}
           selectedKeys={[selectedApp]}
         >
-          {renderSubMenu(domains, visibleApps)}
-          <Menu.Item />
+          { renderSubMenu(domains, visibleApps) }
         </Menu>
         <Logout keycloak={store.getState().keycloak} />
       </Sider>

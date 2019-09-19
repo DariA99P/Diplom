@@ -1,0 +1,22 @@
+{
+    "apps": [
+      {
+        "id": "1",
+        "name": "Website 1",
+        "domain": "Domain 1",
+        "url": "http://www.google.com.br"
+      },
+      {
+        "id": "2",
+        "name": "Website 2",
+        "domain": "Domain 2",
+        "url": "http://www.google.com.br"
+      },
+      {
+        "id": "3",
+        "name": "Website 3",
+        "domain": "Domain 3",
+        "url": "http://www.google.com.br"
+      }
+    ]
+  }
