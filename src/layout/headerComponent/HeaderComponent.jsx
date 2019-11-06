@@ -10,6 +10,7 @@ import {
   Dropdown,
 } from 'antd';
 
+import AccidentIncidentButton from './components/AccidentIncidentButons/AccidentIncidentButtons';
 import Clock from '../../shared/Clock';
 import Tag from '../../shared/Tag';
 
@@ -26,8 +27,8 @@ export function Header({ collapsed, name, toggle }) {
 
   return (
     <AntHeader className="template-header">
-      <Row type="flex" align="middle" justify="space-between">
-        <div className="header-info">
+      <Row className="row-header" type="flex" align="middle" justify="space-between">
+        <div className="panel header-info">
           {
             collapsed
             && (
@@ -39,21 +40,26 @@ export function Header({ collapsed, name, toggle }) {
             )
           }
         </div>
-        <div style={{ fontSize: '20px', color: '#FFF' }}>
-          VistaJet Microservice
-          <Tag />
+        <div className="panel" style={{ fontSize: '20px', color: '#FFF' }}>
+          <div className="center">
+            VistaJet Microservice
+            <Tag />
+          </div>
         </div>
-        <div className="user-info">
-          <Clock style={{ lineHeight: '1px' }} />
-          <Dropdown
-            style={{ lineHeight: '1px' }}
-            overlay={menu}
-            trigger={['click']}
-          >
-            <span>
-              {name}<Icon type="down" />
-            </span>
-          </Dropdown>
+        <div className="panel user-box">
+          <AccidentIncidentButton />
+          <div className="user-info">
+            <Clock style={{ lineHeight: '1px' }} />
+            <Dropdown
+              style={{ lineHeight: '1px' }}
+              overlay={menu}
+              trigger={['click']}
+            >
+              <span>
+                {name}<Icon type="down" />
+              </span>
+            </Dropdown>
+          </div>
         </div>
       </Row>
     </AntHeader>

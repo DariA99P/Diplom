@@ -14,6 +14,15 @@ export const RAYGUN_API_KEY = (window && window.ENV
 
 export const RAYGUN_ENABLE_CRASH_REPORT = (window && window.ENV
   && window.ENV.RAYGUN_ENABLE_CRASH_REPORT) || false;
-  
+
 export const RAYGUN_ENABLE_USER_MONITORING = (window && window.ENV
   && window.ENV.RAYGUN_ENABLE_USER_MONITORING) || false;
+
+export const CENTRIK_ACCESS_URL = (window && window.ENV
+  && window.ENV.CENTRIK_ACCESS_URL) || '';
+
+export const CENTRIK_ACCIDENT_WORKFLOW_ID = (window && window.ENV
+  && window.ENV.CENTRIK_ACCIDENT_WORKFLOW_ID) || '';
+
+export const CENTRIK_INCIDENT_WORKFLOW_ID = (window && window.ENV
+  && window.ENV.CENTRIK_INCIDENT_WORKFLOW_ID) || '';
