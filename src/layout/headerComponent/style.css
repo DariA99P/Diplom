@@ -53,6 +53,14 @@
   justify-content: center;
 }
 
+.row-header .panel .right {
+  margin-left: auto;
+  margin-right: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .user-info {
   display: flex;
   flex-direction: column;

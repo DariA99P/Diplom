@@ -47,18 +47,20 @@ export function Header({ collapsed, name, toggle }) {
           </div>
         </div>
         <div className="panel user-box">
-          <AccidentIncidentButton />
-          <div className="user-info">
-            <Clock style={{ lineHeight: '1px' }} />
-            <Dropdown
-              style={{ lineHeight: '1px' }}
-              overlay={menu}
-              trigger={['click']}
-            >
-              <span>
-                {name}<Icon type="down" />
-              </span>
-            </Dropdown>
+          <div className="right">
+            <AccidentIncidentButton />
+            <div className="user-info">
+              <Clock style={{ lineHeight: '1px' }} />
+              <Dropdown
+                style={{ lineHeight: '1px' }}
+                overlay={menu}
+                trigger={['click']}
+              >
+                <span>
+                  {name}<Icon type="down" />
+                </span>
+              </Dropdown>
+            </div>
           </div>
         </div>
       </Row>
