@@ -1,5 +1,5 @@
 {
-  "auth-server-url": "https://ssodev.vistajet.com/auth",
+  "auth-server-url": "https://sso.dev.vistajet.io/auth",
   "realm": "vistajet",
   "resource": "default-ui-client",
   "ssl-required": "external",
