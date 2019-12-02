@@ -15,6 +15,7 @@ import Clock from '../../shared/Clock';
 import Tag from '../../shared/Tag';
 
 import './style.css';
+import ContactSupportTeam from './components/ContactSupportTeam/ContactSupportTeam';
 
 export function Header({ collapsed, name, toggle }) {
   const { Header: AntHeader } = Layout;
@@ -49,6 +50,7 @@ export function Header({ collapsed, name, toggle }) {
         <div className="panel user-box">
           <div className="right">
             <AccidentIncidentButton />
+            <ContactSupportTeam />
             <div className="user-info">
               <Clock style={{ lineHeight: '1px' }} />
               <Dropdown
