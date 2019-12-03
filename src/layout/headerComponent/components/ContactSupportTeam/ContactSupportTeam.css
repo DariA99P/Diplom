@@ -1,0 +1,7 @@
+.iconBox {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+  height: 36px;
+  cursor: pointer;
+}

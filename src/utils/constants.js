@@ -26,3 +26,5 @@ export const CENTRIK_ACCIDENT_WORKFLOW_ID = (window && window.ENV
 
 export const CENTRIK_INCIDENT_WORKFLOW_ID = (window && window.ENV
   && window.ENV.CENTRIK_INCIDENT_WORKFLOW_ID) || '';
+
+export const SUPPORT_URL = (window && window.ENV && window.ENV.SUPPORT_URL) || '';
