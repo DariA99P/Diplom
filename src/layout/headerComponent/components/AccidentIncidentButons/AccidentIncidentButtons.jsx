@@ -18,16 +18,16 @@ const AccidentIncidentButtons = () => {
     && keycloak.hasRealmRole('AG-ECN-Launch-Emergency-Communication')
     && (
       <div className="accident-incident-box">
-        <Button className="ant-btn-danger accident-btn">
-          <a href={`${CENTRIK_ACCESS_URL}?WorkflowDefinitionId=${CENTRIK_ACCIDENT_WORKFLOW_ID}&token=${keycloak.token}`} target="_blank" rel="noopener noreferrer">
+        <a href={`${CENTRIK_ACCESS_URL}?WorkflowDefinitionId=${CENTRIK_ACCIDENT_WORKFLOW_ID}&token=${keycloak.token}`} target="_blank" rel="noopener noreferrer">
+          <Button className="ant-btn-danger accident-btn">
             Accident
-          </a>
-        </Button>
-        <Button className="ant-btn-warning incident-btn">
-          <a href={`${CENTRIK_ACCESS_URL}?WorkflowDefinitionId=${CENTRIK_INCIDENT_WORKFLOW_ID}&token=${keycloak.token}`} target="_blank" rel="noopener noreferrer">
+          </Button>
+        </a>
+        <a href={`${CENTRIK_ACCESS_URL}?WorkflowDefinitionId=${CENTRIK_INCIDENT_WORKFLOW_ID}&token=${keycloak.token}`} target="_blank" rel="noopener noreferrer">
+          <Button className="ant-btn-warning incident-btn">
             Incident
-          </a>
-        </Button>
+          </Button>
+        </a>
       </div>
     ));
 };
