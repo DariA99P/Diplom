@@ -3,7 +3,6 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "precommit": "lint-staged",
     "prepush": "yarn test --coverage",
     "pretty": "pretty-quick --staged",
     "lint": "eslint . --ext .ts,.tsx",
