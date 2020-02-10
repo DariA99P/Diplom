@@ -14,19 +14,19 @@ export const decrementLoadingStatus = () => ({
 });
 
 export function dispatchUpdateNotification(notification) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(updateNotification(notification));
   };
 }
 
 export function startLoading() {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(incrementLoadingStatus());
   };
 }
 
 export function finishLoading() {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(decrementLoadingStatus());
   };
 }

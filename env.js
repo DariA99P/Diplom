@@ -13,7 +13,8 @@ window.ENV = {
   RAYGUN_API_KEY: '',
   RAYGUN_ENABLE_CRASH_REPORT: false,
   RAYGUN_ENABLE_USER_MONITORING: false,
-  CENTRIK_ACCESS_URL: 'https://vistajet-test.centrik.net/Management/Workflow/WorkflowDetail.aspx',
+  CENTRIK_ACCESS_URL:
+    'https://vistajet-test.centrik.net/Management/Workflow/WorkflowDetail.aspx',
   CENTRIK_ACCIDENT_WORKFLOW_ID: '6a2219a9-84cd-4b8d-ae5e-14ef25478cdb',
   CENTRIK_INCIDENT_WORKFLOW_ID: '0c81bc81-715d-49aa-ace7-5762a81429e3',
   SUPPORT_URL: 'https://jira.vistajet.local/servicedesk/customer/portal/2',

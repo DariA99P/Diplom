@@ -28,7 +28,8 @@ module.exports = {
   testURL: 'http://localhost',
   transform: {
     '^.+\\.(js|jsx|mjs)$': '<rootDir>/node_modules/babel-jest',
-    '^(?!.*\\.(js|jsx|mjs|css|json)$)': '<rootDir>/config/jest/fileTransform.js',
+    '^(?!.*\\.(js|jsx|mjs|css|json)$)':
+      '<rootDir>/config/jest/fileTransform.js',
   },
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$'],
   moduleNameMapper: {
