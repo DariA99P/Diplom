@@ -3,7 +3,6 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "prepush": "yarn test --coverage",
     "pretty": "pretty-quick --staged",
     "lint": "eslint . --ext .ts,.tsx",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config=config/webpack.dev.js --hot --history-api-fallback",
