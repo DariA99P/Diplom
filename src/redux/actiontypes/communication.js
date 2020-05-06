@@ -1,5 +1,0 @@
-export const UPDATE_NOTIFICATION = 'communication/UPDATE_NOTIFICATION';
-export const INCREMENT_LOADING_STATUS =
-  'communication/INCREMENT_LOADING_STATUS';
-export const DECREMENT_LOADING_STATUS =
-  'communication/DECREMENT_LOADING_STATUS';

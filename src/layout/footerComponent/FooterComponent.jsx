@@ -7,7 +7,7 @@ const FooterComponent = () => (
   <Footer style={{ backgroundColor: '#FAFAFA' }}>
     <Row>
       <Col span={24} style={{ textAlign: 'center' }}>
-        Copyright ©2018, 2019 VistaJet
+        Copyright ©2020 Poprotska Daria
       </Col>
     </Row>
   </Footer>
