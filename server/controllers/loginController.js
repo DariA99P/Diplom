@@ -12,9 +12,7 @@ const userSchema = Joi.object().keys({
   password: Joi.string()
     .regex(/^[a-zA-Z0-9]{6,30}$/)
     .required(),
-  organizationId: Joi.number()
-    .integer()
-    .required(),
+  organizationId: Joi.string().required(),
   confirmationPassword: Joi.any()
     .valid(Joi.ref('password'))
     .required(),
@@ -44,6 +42,11 @@ exports.registerUser = async(req, res, next) => {
 
     delete result.value.confirmationPassword;
     result.value.password = hash;
+    result.value.dateOfBirth = '';
+    result.value.experience = 0;
+    result.value.subscribersIds = [];
+    result.value.subscriptionsIds = [];
+    result.value.avatarUrl = '';
 
     const newUser = await new User(result.value);
     await newUser.save();
@@ -66,7 +69,6 @@ exports.loginUser = async(req, res, next) => {
       });
       return;
     }
-    console.log(user);
     const valid = await User.isValidPassword(
       req.body.password || '',
       user.password,
@@ -77,20 +79,7 @@ exports.loginUser = async(req, res, next) => {
       });
       return;
     }
-    res.status(200).send({
-      data: user,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-exports.getListUsers = async(req, res, next) => {
-  try {
-    const users = await User.find();
-    return res.status(200).send({
-      data: users,
-    });
+    res.status(200).send({ id: user._id });
   } catch (error) {
     next(error);
   }

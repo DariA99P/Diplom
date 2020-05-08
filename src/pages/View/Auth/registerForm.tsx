@@ -1,24 +1,31 @@
 import React from 'react';
 import * as s from './styled';
 import { InputComponent } from '../neuroDrawingComponent/components/components/inputComponent';
-import { useDispatch } from 'react-redux';
-import { changeStatusForm, userSubmitRegisterForm } from './reducer/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  changeStatusForm,
+  getOrganizationsList,
+  userSubmitRegisterForm,
+} from './reducer/actions';
 import { Link } from 'react-router-dom';
 
 const buttonStyle: React.CSSProperties = { marginLeft: '16px' };
 
 const RegisterFormComponent: React.FC = props => {
   const dispatch = useDispatch();
-  const [email, setEmail] = React.useState('test@gmail.com');
-  const [username, setUsername] = React.useState('Daria1999');
-  const [firstName, setFirstName] = React.useState('Daria');
-  const [lastName, setLastName] = React.useState('Poprotska');
-  const [phoneNumber, setPhoneNumber] = React.useState('0998765432');
-  const [organization, setOrganization] = React.useState(null);
-  const [password, setPassword] = React.useState('1234567890s');
-  const [confirmationPassword, setConfirmationPassword] = React.useState(
-    '1234567890s',
-  );
+
+  React.useEffect(() => {
+    dispatch(getOrganizationsList.started());
+  }, []);
+
+  const [email, setEmail] = React.useState('');
+  const [username, setUsername] = React.useState('');
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
+  const [phoneNumber, setPhoneNumber] = React.useState('');
+  const [organizationId, setOrganizationId] = React.useState(null);
+  const [password, setPassword] = React.useState('');
+  const [confirmationPassword, setConfirmationPassword] = React.useState('');
 
   const onChangeEmail = React.useCallback((value: string) => {
     setEmail(value);
@@ -38,8 +45,9 @@ const RegisterFormComponent: React.FC = props => {
   const onChangePhoneNumber = React.useCallback((value: string) => {
     setPhoneNumber(value);
   }, []);
-  const onChangeOrganization = React.useCallback((value: string) => {
-    setOrganization(value);
+  const onChangeOrganizationId = React.useCallback((value: string) => {
+    console.log(value);
+    setOrganizationId(value);
   }, []);
   const onChangeConfirmPassword = React.useCallback((value: string) => {
     setConfirmationPassword(value);
@@ -59,7 +67,7 @@ const RegisterFormComponent: React.FC = props => {
         phoneNumber,
         confirmationPassword,
         email,
-        organizationId: 0,
+        organizationId,
         password,
       }),
     );
@@ -70,7 +78,7 @@ const RegisterFormComponent: React.FC = props => {
     phoneNumber,
     confirmationPassword,
     email,
-    organization,
+    organizationId,
     password,
   ]);
 
@@ -105,8 +113,8 @@ const RegisterFormComponent: React.FC = props => {
           />
           <InputComponent
             title="Organization"
-            value={organization}
-            onChange={onChangePhoneNumber}
+            value={organizationId}
+            onChange={onChangeOrganizationId}
             mandatoryFields={false}
           />
           <InputComponent

@@ -4,9 +4,10 @@ import { Button, Modal, Select, Spin, Tooltip } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   changeTypeDrawing,
-  getUsersInfo,
+  getListUsers,
   processDrawing,
   saveImage,
+  saveImageToDB,
 } from '../../redux/actions';
 import { PictureOutlined, SaveOutlined } from '@ant-design/icons';
 import { TypeDrawing } from '../../../../Models/enum';
@@ -17,10 +18,12 @@ import CanvasModule from '../../../../Controllers/imageControllers/editor/canvas
 import removeImageController from '../../../../Controllers/imageControllers/removeImageController';
 import { MagicIcons } from '../../../../../assets/images/MagicIcons';
 import { downloadImageController } from '../../../../Controllers/imageControllers/editor/downloadImageController';
+import { saveImageToDBController } from '../../../../Controllers/imageControllers/editor/saveImageToDBController';
 
 const buttonStyle: React.CSSProperties = { marginLeft: '16px' };
 export const Editor: React.FC = () => {
   const dispatch = useDispatch();
+
   const typeDrawing = useSelector<RootState, TypeDrawing>(
     state => state.mainPage.typeDrawing,
   );
@@ -36,7 +39,7 @@ export const Editor: React.FC = () => {
     dispatch(processDrawing.started(vector));
     setOpen(true);
   }, []);
-  const onClickSave = React.useCallback(() => {
+  const onClickSaveToDevice = React.useCallback(() => {
     const data = saveImageToDeviceController();
     dispatch(saveImage(data));
   }, []);
@@ -49,15 +52,15 @@ export const Editor: React.FC = () => {
     dispatch(changeTypeDrawing(TypeDrawing.canvas));
   }, []);
 
-  React.useEffect(() => {
-    dispatch(getUsersInfo.started());
-  }, []);
-
   const onYes = React.useCallback(() => {
     setOpen(false);
   }, []);
   const onClose = React.useCallback(() => {
     setOpen(false);
+  }, []);
+  const onClickSaveToDB = React.useCallback(() => {
+    const data = saveImageToDBController();
+    dispatch(saveImageToDB.started(data));
   }, []);
 
   return (
@@ -74,7 +77,10 @@ export const Editor: React.FC = () => {
             <PictureOutlined onClick={onClickImage} />
           </Tooltip>
           <Tooltip title="Save image to device">
-            <SaveOutlined onClick={onClickSave} style={{ marginTop: '24px' }} />
+            <SaveOutlined
+              onClick={onClickSaveToDevice}
+              style={{ marginTop: '24px' }}
+            />
           </Tooltip>
           <Tooltip title="Process image">
             <div onClick={onClickProcess}>
@@ -95,15 +101,15 @@ export const Editor: React.FC = () => {
                 ? 'Clear canvas'
                 : 'Remove image'}
             </Button>
-            {typeDrawing === TypeDrawing.canvas ? (
-              <Button type="primary" style={buttonStyle}>
-                Save canvas
-              </Button>
-            ) : (
-              <Button type="primary" style={buttonStyle}>
-                Save image
-              </Button>
-            )}
+            <Button
+              type="primary"
+              style={buttonStyle}
+              onClick={onClickSaveToDB}
+            >
+              {typeDrawing === TypeDrawing.canvas
+                ? 'Save canvas'
+                : 'Save image'}
+            </Button>
           </s.ButtonBlockStyled>
         </s.CanvasComponent>
       </s.EditorComponent>

@@ -1,9 +1,58 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
 import * as actions from './actions';
-import { loginUser, registerUser } from '../../../../api';
+import {
+  getOrganizationListApi,
+  getUserInfoApi,
+  loginUser,
+  registerUser,
+} from '../../../../api';
 import { message } from 'antd';
 import history from '../../../../config/history';
 import { IAuthUserSchema } from '../../../Models/interfaces';
+
+function* initializeData() {
+  try {
+    const id = localStorage.getItem('idUser');
+    const { data } = yield call(getUserInfoApi, id);
+    const { data: list } = yield call(getOrganizationListApi);
+    yield put(
+      actions.initializeData.done({
+        params: null,
+        result: {
+          user: data.user,
+          organizationsList: list,
+          listUsers: data.listUsers,
+        },
+      }),
+    );
+  } catch (error) {
+    yield put(
+      actions.initializeData.failed({
+        params: null,
+        error,
+      }),
+    );
+  }
+}
+
+function* getOrganizationsList() {
+  try {
+    const { data } = yield call(getOrganizationListApi);
+    yield put(
+      actions.getOrganizationsList.done({
+        params: null,
+        result: data,
+      }),
+    );
+  } catch (error) {
+    yield put(
+      actions.getOrganizationsList.failed({
+        params: null,
+        error,
+      }),
+    );
+  }
+}
 
 function* registerNewUser(info) {
   try {
@@ -25,7 +74,6 @@ function* registerNewUser(info) {
       );
       history.push('/');
     }
-    console.log(result);
   } catch (e) {
     message.error('Service is unavailable');
     yield put(
@@ -48,9 +96,10 @@ function* signIn(loginInfo) {
       message.error(result.data.error);
     } else {
       history.push('/mainPage');
+      localStorage.setItem('idUser', result.data.id);
       yield put(
         actions.userLogsIn.done({
-          result: result.data,
+          result: true,
           params: null,
         }),
       );
@@ -68,6 +117,8 @@ function* signIn(loginInfo) {
 
 export function* saga() {
   yield all([
+    takeLatest(actions.initializeData.started, initializeData),
+    takeLatest(actions.getOrganizationsList.started, getOrganizationsList),
     takeLatest(actions.userSubmitRegisterForm.started, registerNewUser),
     takeLatest(actions.userLogsIn.started, signIn),
   ]);
